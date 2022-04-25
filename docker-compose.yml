@@ -1,0 +1,24 @@
+version: '3.7'
+
+networks:
+  marvelnet:
+    external: true
+
+services:
+  marvel-user-comics:
+    hostname: marvel-user-comics
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: marvel-usercomics-api
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    environment:
+      - secret_key=768827439a3b1c51eda4f9e34180e533f90a4acdadf2c9d05c4885dec88902d5
+      - mongodb_url=mongodb+srv://marvel_auth:OkHMQqhcRXdHKHEJ@marveluser.pass4.mongodb.net/user?retryWrites=true&w=majority
+      - marvel_search_url=http://marvel-search-api-marvel-search-api-1:8002/api/v1/marvel-search/
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - marvelnet
