@@ -9,6 +9,8 @@ python = "^3.10"
 fastapi = "^0.75.2"
 uvicorn = "^0.17.6"
 requests = "^2.27.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+pymongo = {version = "3.12.3", extras = ["srv"]}
 
 [tool.poetry.dev-dependencies]
 
